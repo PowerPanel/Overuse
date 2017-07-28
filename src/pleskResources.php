@@ -27,7 +27,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_TIMEOUT, 600); //10min
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $stats);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($stats));
 $resp = curl_exec($ch);
 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -159,7 +159,7 @@ class PleskStats{
 
 			// Result with a single row, create array
 			if (isset($array["webspace"]["get_traffic"]["result"]['status'])) {
-				$array["webspace"]["get_traffic"]["result"] = array($array["get_traffic"]["result"]);
+				$array["webspace"]["get_traffic"]["result"] = array($array["webspace"]["get_traffic"]["result"]);
 			}
 			foreach ($array["webspace"]["get_traffic"]["result"] as $site_traffic) {
 				if (isset($resultarray["result"][$site_traffic['id']]) && isset($site_traffic["status"]) && $site_traffic["status"] == 'ok') {

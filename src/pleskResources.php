@@ -15,7 +15,7 @@ $username = ''; //admin
 $password = '';
 $secret_key = ''; //Leave username + password empty in case secret key is used. Command: `plesk bin secret_key -c -ip-address 127.0.0.1 -description "PowerPanel Resource Hook"`
 
-$webhook_url = ''; //get the url from PowerPanel for more information read http://support.powerpanel.io/overuse/
+$webhook_url = ''; //Get the unique webhook URL at the PowerPanel Plesk plugin settings. For more information read: https://powerpanel.io/support/monitor-charge-overusage
 
 
 // ====== Don't edit under this line

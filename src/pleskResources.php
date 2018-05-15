@@ -166,15 +166,17 @@ class PleskStats {
 					$this->result_array["result"][ $site_traffic["id"] ]["traffic_month"] = $this->result_array["result"][ $site_traffic["id"] ]["traffic"];
 					$this->result_array["result"][ $site_traffic["id"] ]['traffic'] = 0;
 
-					foreach($site_traffic['traffic'] AS $site_traffic_data) {
-					if($site_traffic_data['date'] == date('Y-m-d')) {
-							// today
+					if(isset($site_traffic['traffic'])) {
+						foreach($site_traffic['traffic'] AS $site_traffic_data) {
+							if($site_traffic_data['date'] == date('Y-m-d')) {
+								// today
+								unset($site_traffic_data['date']);
+								$traffic = array_sum($site_traffic_data);
+								// We found 'today', so we set the traffic for only today:
+								$this->result_array["result"][ $site_traffic["id"] ]['traffic'] = $traffic;
+							}
 							unset($site_traffic_data['date']);
-							$traffic = array_sum($site_traffic_data);
-							// We found 'today', so we set the traffic for only today:
-							$this->result_array["result"][ $site_traffic["id"] ]['traffic'] = $traffic;
 						}
-						unset($site_traffic_data['date']);
 					}
 					$this->result_array["result"][ $site_traffic["id"] ]["traffic_day"] = $traffic;
 				}
